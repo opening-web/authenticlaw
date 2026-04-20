@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>authenticlaw – Konsultan Kekayaan Intelektual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy2: #122040;
+  --blue: #1a3a6b;
+  --blue2: #1e4d9b;
+  --accent: #c8a96e;
+  --accent2: #e2c488;
+  --white: #ffffff;
+  --offwhite: #f5f4f0;
+  --gray: #6b7280;
+  --light: #e8edf5;
+  --radius: 4px;
+  --shadow: 0 4px 32px rgba(10,22,40,0.13);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(10,22,40,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(200,169,110,0.2);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+  transition: all 0.3s;
+}
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon {
+  width: 38px; height: 38px; background: var(--accent);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900; color: var(--navy); font-size: 18px;
+}
+.logo-text { font-family: 'Playfair Display', serif; color: var(--white); font-size: 17px; font-weight: 700; }
+.logo-sub { font-family: 'DM Sans', sans-serif; color: var(--accent); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; display: block; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  background: var(--accent); color: var(--navy);
+  padding: 10px 22px; border-radius: var(--radius);
+  font-weight: 600; font-size: 13px; text-decoration: none;
+  letter-spacing: 0.3px; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--accent2); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  background: var(--navy);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(30,77,155,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(200,169,110,0.08) 0%, transparent 60%);
+  display: flex; align-items: center;
+  padding: 100px 40px 60px;
+  position: relative; overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,169,110,0.12); border: 1px solid rgba(200,169,110,0.3);
+  color: var(--accent); padding: 6px 16px; border-radius: 100px;
+  font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 900; color: var(--white);
+  line-height: 1.1; margin-bottom: 24px;
+}
+.hero h1 span { color: var(--accent); }
+.hero p { color: rgba(255,255,255,0.65); font-size: 17px; line-height: 1.7; margin-bottom: 40px; font-weight: 300; }
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--accent); color: var(--navy);
+  padding: 14px 32px; border-radius: var(--radius);
+  font-weight: 700; font-size: 15px; text-decoration: none;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+.btn-outline {
+  background: transparent; color: var(--white);
+  padding: 14px 32px; border-radius: var(--radius);
+  font-weight: 500; font-size: 15px; text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.hero-stats { display: flex; gap: 40px; margin-top: 48px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--accent); font-weight: 700; }
+.stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+.hero-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: 12px; padding: 32px;
+  backdrop-filter: blur(4px);
+}
+.hero-card h3 { font-family: 'Playfair Display', serif; color: var(--accent); font-size: 20px; margin-bottom: 20px; }
+.service-pill {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  cursor: pointer; transition: all 0.2s;
+}
+.service-pill:last-child { border-bottom: none; }
+.service-pill:hover { padding-left: 6px; }
+.pill-icon { width: 36px; height: 36px; background: rgba(200,169,110,0.12); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.pill-name { font-size: 14px; color: var(--white); font-weight: 500; }
+.pill-desc { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 1px; }
+.pill-arrow { margin-left: auto; color: var(--accent); font-size: 18px; }
+
+/* ===== SECTIONS ===== */
+section { padding: 90px 40px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.2; }
+.section-sub { font-size: 17px; color: var(--gray); line-height: 1.7; max-width: 580px; }
+
+/* ===== LAYANAN ===== */
+#layanan { background: var(--offwhite); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 56px; }
+.service-card {
+  background: var(--white); border: 1px solid rgba(10,22,40,0.08);
+  border-radius: 8px; padding: 36px 32px;
+  transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue2), var(--accent));
+  transform: scaleX(0); transition: transform 0.3s;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-num { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--light); font-weight: 900; line-height: 1; margin-bottom: 16px; }
+.service-icon { font-size: 28px; margin-bottom: 16px; }
+.service-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+.service-desc { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+.service-link { font-size: 13px; color: var(--blue2); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+
+/* ===== KALKULATOR ===== */
+#kalkulator { background: var(--navy); }
+#kalkulator .section-title { color: var(--white); }
+#kalkulator .section-label { color: var(--accent); }
+.calc-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 56px; align-items: start; }
+.calc-form label { display: block; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
+.calc-form select, .calc-form input {
+  width: 100%; padding: 14px 16px; margin-bottom: 20px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px; color: var(--white); font-size: 15px; font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border-color 0.2s; appearance: none;
+}
+.calc-form select:focus, .calc-form input:focus { border-color: var(--accent); }
+.calc-form select option { background: var(--navy2); }
+.calc-btn {
+  width: 100%; padding: 16px; background: var(--accent); color: var(--navy);
+  border: none; border-radius: 6px; font-size: 15px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s;
+}
+.calc-btn:hover { background: var(--accent2); }
+.calc-result {
+  background: rgba(200,169,110,0.08); border: 1px solid rgba(200,169,110,0.25);
+  border-radius: 12px; padding: 36px;
+}
+.calc-result h3 { font-family: 'Playfair Display', serif; color: var(--accent); font-size: 18px; margin-bottom: 28px; }
+.cost-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.cost-row:last-of-type { border-bottom: none; }
+.cost-label { font-size: 14px; color: rgba(255,255,255,0.6); }
+.cost-value { font-size: 15px; color: var(--white); font-weight: 600; }
+.cost-total { display: flex; justify-content: space-between; padding: 20px 0 0; margin-top: 16px; border-top: 1px solid var(--accent); }
+.cost-total .cost-label { color: var(--accent); font-weight: 600; font-size: 15px; }
+.cost-total .cost-value { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--accent); }
+.cost-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 16px; text-align: center; }
+
+/* ===== TENTANG ===== */
+#tentang { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+.about-img-wrap { position: relative; }
+.about-img-box {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--navy2) 100%);
+  border-radius: 8px; height: 420px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px; position: relative; overflow: hidden;
+}
+.about-img-box::after {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(200,169,110,0.03) 20px, rgba(200,169,110,0.03) 21px);
+}
+.about-badge-box {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--accent); color: var(--navy);
+  border-radius: 8px; padding: 20px 24px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.about-badge-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; }
+.about-badge-lbl { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.about-points { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+.about-point { display: flex; gap: 16px; align-items: flex-start; }
+.point-icon { width: 44px; height: 44px; background: var(--light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.point-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.point-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+/* ===== BLOG ===== */
+#blog { background: var(--offwhite); }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; margin-top: 56px; }
+.blog-card {
+  background: var(--white); border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(10,22,40,0.07); transition: all 0.3s;
+}
+.blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.blog-thumb {
+  height: 180px; display: flex; align-items: center; justify-content: center;
+  font-size: 48px; position: relative;
+}
+.blog-thumb-1 { background: linear-gradient(135deg, #1a3a6b, #1e4d9b); }
+.blog-thumb-2 { background: linear-gradient(135deg, #0a1628, #1a3a6b); }
+.blog-thumb-3 { background: linear-gradient(135deg, #1e4d9b, #2d6bc4); }
+.blog-tag { position: absolute; top: 16px; left: 16px; background: var(--accent); color: var(--navy); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 100px; letter-spacing: 0.5px; text-transform: uppercase; }
+.blog-content { padding: 24px; }
+.blog-date { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
+.blog-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.35; }
+.blog-excerpt { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+.blog-read { font-size: 13px; color: var(--blue2); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+
+/* ===== KONSULTASI ===== */
+#konsultasi { background: var(--white); }
+.consult-wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; margin-top: 56px; align-items: start; }
+.consult-info { }
+.consult-info-list { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+.ci-item { display: flex; gap: 16px; align-items: flex-start; }
+.ci-icon { width: 44px; height: 44px; background: var(--light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.ci-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.ci-text { font-size: 14px; color: var(--gray); }
+.wa-btn {
+  display: flex; align-items: center; gap: 12px;
+  background: #25d366; color: white;
+  padding: 16px 28px; border-radius: 8px;
+  font-weight: 700; font-size: 15px; text-decoration: none;
+  margin-top: 32px; transition: all 0.2s; width: fit-content;
+}
+.wa-btn:hover { background: #22c45e; transform: translateY(-2px); }
+.consult-form-box {
+  background: var(--offwhite); border-radius: 12px; padding: 40px;
+  border: 1px solid rgba(10,22,40,0.08);
+}
+.consult-form-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 28px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 8px; letter-spacing: 0.3px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 13px 16px;
+  background: var(--white); border: 1px solid rgba(10,22,40,0.15);
+  border-radius: 6px; font-size: 14px; font-family: 'DM Sans', sans-serif;
+  color: var(--navy); outline: none; transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue2); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  width: 100%; padding: 16px; background: var(--navy); color: var(--white);
+  border: none; border-radius: 6px; font-size: 15px; font-weight: 700;
+  font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.form-submit:hover { background: var(--blue2); }
+.form-success {
+  display: none; text-align: center; padding: 24px;
+  background: rgba(37,211,102,0.08); border: 1px solid rgba(37,211,102,0.3);
+  border-radius: 8px; margin-top: 20px;
+}
+.form-success p { color: #15803d; font-weight: 600; }
+
+/* ===== STATUS HKI ===== */
+#status { background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%); }
+#status .section-title { color: var(--white); }
+.status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 56px; }
+.status-box {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(200,169,110,0.2);
+  border-radius: 12px; padding: 32px;
+}
+.status-box h3 { font-family: 'Playfair Display', serif; color: var(--accent); font-size: 20px; margin-bottom: 8px; }
+.status-box p { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; line-height: 1.6; }
+.status-search { display: flex; gap: 0; }
+.status-search input {
+  flex: 1; padding: 13px 16px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+  border-right: none; border-radius: 6px 0 0 6px;
+  color: var(--white); font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none;
+}
+.status-search input::placeholder { color: rgba(255,255,255,0.3); }
+.status-search button {
+  padding: 13px 20px; background: var(--accent); color: var(--navy);
+  border: none; border-radius: 0 6px 6px 0; font-weight: 700; cursor: pointer;
+  font-size: 14px; transition: background 0.2s;
+}
+.status-search button:hover { background: var(--accent2); }
+.status-links { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.status-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+  text-decoration: none; color: var(--white); font-size: 14px;
+  transition: all 0.2s;
+}
+.status-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,169,110,0.07); }
+.status-link-icon { font-size: 20px; }
+
+/* ===== KONTAK ===== */
+#kontak { background: var(--offwhite); }
+.kontak-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; margin-top: 56px; }
+.kontak-info-list { display: flex; flex-direction: column; gap: 24px; }
+.k-item { display: flex; gap: 16px; align-items: flex-start; }
+.k-icon { width: 48px; height: 48px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.k-title { font-size: 13px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.k-val { font-size: 15px; color: var(--navy); font-weight: 500; }
+.map-placeholder {
+  background: var(--light); border-radius: 12px; height: 300px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1px solid rgba(10,22,40,0.1); gap: 12px; color: var(--gray);
+  margin-top: 32px;
+}
+.jam-op { background: var(--white); border-radius: 8px; padding: 20px; border: 1px solid rgba(10,22,40,0.08); margin-top: 28px; }
+.jam-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(10,22,40,0.05); font-size: 14px; }
+.jam-row:last-child { border-bottom: none; }
+.jam-day { color: var(--gray); }
+.jam-time { font-weight: 600; color: var(--navy); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--navy); color: rgba(255,255,255,0.6);
+  padding: 60px 40px 0;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.footer-brand p { font-size: 14px; line-height: 1.7; margin-top: 16px; margin-bottom: 20px; }
+.footer-social { display: flex; gap: 10px; }
+.soc-btn { width: 36px; height: 36px; background: rgba(255,255,255,0.07); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; transition: background 0.2s; }
+.soc-btn:hover { background: rgba(200,169,110,0.2); }
+.footer-col h4 { font-size: 13px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+.footer-col a { display: block; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom { max-width: 1100px; margin: 0 auto; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.footer-bottom a { color: var(--accent); text-decoration: none; }
+
+/* ===== WA FLOAT ===== */
+.wa-float {
+  position: fixed; bottom: 32px; right: 32px; z-index: 998;
+  width: 60px; height: 60px; background: #25d366;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  cursor: pointer; transition: all 0.3s; text-decoration: none;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+.wa-float:hover { transform: scale(1.1); background: #22c45e; }
+@keyframes pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)} 50%{box-shadow:0 4px 36px rgba(37,211,102,0.65)} }
+
+/* ===== MOBILE NAV ===== */
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 998;
+  background: var(--navy); flex-direction: column;
+  align-items: center; justify-content: center; gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: var(--white); text-decoration: none; font-size: 22px; font-family: 'Playfair Display', serif; }
+
+/* ===== ANIMATIONS ===== */
+.fade-in { opacity: 0; transform: translateY(28px); transition: all 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 64px 20px; }
+  #hero { padding: 100px 20px 60px; }
+  .hero-inner, .calc-wrapper, .about-grid, .consult-wrap, .status-grid, .kontak-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-stats { gap: 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .about-badge-box { right: 10px; bottom: -10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="logo">
+    <div class="logo-icon">L</div>
+    <div>
+      <span class="logo-text">authenticlaw</span>
+      <span class="logo-sub">Konsultan Kekayaan Intelektual</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a href="#kalkulator">Kalkulator</a></li>
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#blog">Artikel</a></li>
+    <li><a href="#status">Cek Status</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <a href="#konsultasi" class="nav-cta">Konsultasi Gratis</a>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#layanan" onclick="toggleMenu()">Layanan</a>
+  <a href="#kalkulator" onclick="toggleMenu()">Kalkulator</a>
+  <a href="#tentang" onclick="toggleMenu()">Tentang</a>
+  <a href="#blog" onclick="toggleMenu()">Artikel</a>
+  <a href="#konsultasi" onclick="toggleMenu()">Konsultasi</a>
+  <a href="#kontak" onclick="toggleMenu()">Kontak</a>
+  <a href="#" onclick="toggleMenu()" style="color:rgba(255,255,255,0.4);font-size:14px;font-family:'DM Sans',sans-serif">✕ Tutup</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">Konsultan HKI Terpercaya</div>
+      <h1>Lindungi <span>Kekayaan</span> Intelektual Anda</h1>
+      <p>Kami membantu individu dan perusahaan mendaftarkan, melindungi, dan mempertahankan hak kekayaan intelektual mereka dengan layanan hukum profesional dan terpercaya.</p>
+      <div class="hero-btns">
+        <a href="#konsultasi" class="btn-primary">Konsultasi Gratis →</a>
+        <a href="#layanan" class="btn-outline">Lihat Layanan</a>
+      </div>
+
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <h3>Layanan Utama Kami</h3>
+        <div class="service-pill"><div class="pill-icon">™️</div><div><div class="pill-name">Pendaftaran Merek</div><div class="pill-desc">Merek dagang & logo</div></div><div class="pill-arrow">›</div></div>
+        <div class="service-pill"><div class="pill-icon">©️</div><div><div class="pill-name">Hak Cipta</div><div class="pill-desc">Karya seni & software</div></div><div class="pill-arrow">›</div></div>
+        <div class="service-pill"><div class="pill-icon">🎨</div><div><div class="pill-name">Desain Industri</div><div class="pill-desc">Produk & kemasan</div></div><div class="pill-arrow">›</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYANAN -->
+<section id="layanan">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Layanan Kami</div>
+      <h2 class="section-title">Perlindungan HKI Menyeluruh</h2>
+      <p class="section-sub">Dari konsultasi awal hingga pendaftaran resmi, kami mendampingi Anda di setiap tahap perlindungan kekayaan intelektual.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-num">01</div>
+        <div class="service-icon">™️</div>
+        <div class="service-name">Pendaftaran Merek</div>
+        <div class="service-desc">Daftarkan merek dagang, logo, dan nama usaha Anda agar terlindungi secara hukum di Indonesia dan internasional melalui sistem Madrid.</div>
+        <a href="#konsultasi" class="service-link">Konsultasi sekarang →</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">02</div>
+        <div class="service-icon">©️</div>
+        <div class="service-name">Hak Cipta</div>
+        <div class="service-desc">Pencatatan hak cipta untuk karya tulis, musik, software, desain grafis, dan konten digital Anda agar mendapat perlindungan hukum.</div>
+        <a href="#konsultasi" class="service-link">Konsultasi sekarang →</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">03</div>
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Desain Industri</div>
+        <div class="service-desc">Lindungi tampilan produk, kemasan, dan desain unik Anda dari peniruan. Penting untuk industri manufaktur dan FMCG.</div>
+        <a href="#konsultasi" class="service-link">Konsultasi sekarang →</a>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">04</div>
+        <div class="service-icon">⚖️</div>
+        <div class="service-name">Sengketa</div>
+        <div class="service-desc">Penanganan sengketa HKI, gugatan pembatalan merek, dan pembelaan hak di Pengadilan Niaga serta mediasi alternatif.</div>
+        <a href="#konsultasi" class="service-link">Konsultasi sekarang →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KALKULATOR BIAYA -->
+<section id="kalkulator">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Estimasi Biaya</div>
+      <h2 class="section-title" style="color:var(--white)">Kalkulator Biaya Pendaftaran HKI</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.55)">Dapatkan estimasi biaya pendaftaran kekayaan intelektual Anda secara instan.</p>
+    </div>
+    <div class="calc-wrapper">
+      <div class="calc-form fade-in">
+        <label>Jenis HKI</label>
+        <select id="calcJenis" onchange="hitungBiaya()">
+          <option value="merek">Merek Dagang</option>
+          <option value="paten_biasa">Paten Biasa</option>
+          <option value="hak_cipta">Hak Cipta</option>
+          <option value="desain_industri">Desain Industri</option>
+        </select>
+        <label>Jenis Pemohon</label>
+        <select id="calcPemohon" onchange="hitungBiaya()">
+          <option value="umkm">UMKM / Perorangan</option>
+          <option value="perusahaan">Seniman</option>
+        </select>
+        <label>Jumlah Kelas / Item</label>
+        <input type="number" id="calcKelas" value="1" min="1" max="45" onchange="hitungBiaya()">
+        <label>Lingkup Pendaftaran</label>
+        <select id="calcScope" onchange="hitungBiaya()">
+          <option value="nasional">Nasional (Indonesia)</option>
+        </select>
+        <button class="calc-btn" onclick="hitungBiaya()">🧮 Hitung Estimasi Biaya</button>
+      </div>
+      <div class="calc-result fade-in" id="calcResult">
+        <h3>Rincian Estimasi Biaya</h3>
+        <div class="cost-row"><span class="cost-label">Biaya Resmi DJKI</span><span class="cost-value" id="cr-djki">Rp 1.800.000</span></div>
+        <div class="cost-row"><span class="cost-label">Biaya Jasa Konsultan</span><span class="cost-value" id="cr-jasa">Rp 3.000.000</span></div>
+        <div class="cost-row"><span class="cost-label">Biaya Administrasi</span><span class="cost-value" id="cr-admin">Rp 500.000</span></div>
+        <div class="cost-row"><span class="cost-label">Estimasi Lama Proses</span><span class="cost-value" id="cr-lama">12–18 bulan</span></div>
+        <div class="cost-total">
+          <span class="cost-label">Total Estimasi</span>
+          <span class="cost-value" id="cr-total">Rp 5.300.000</span>
+        </div>
+        <p class="cost-note">* Estimasi ini belum termasuk pajak. Biaya resmi dapat berubah sesuai kebijakan DJKI. Hubungi kami untuk konsultasi lebih lanjut.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TENTANG KAMI -->
+<section id="tentang">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Tentang Kami</div>
+      <h2 class="section-title">Mitra Terpercaya Perlindungan HKI Anda</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-img-wrap fade-in">
+        <div class="about-img-box">⚖️</div>
+      </div>
+      <div class="fade-in">
+        <p style="font-size:17px;color:var(--gray);line-height:1.8;margin-bottom:24px">Platform hukum digital yang mempermudah perlindungan hak kekayaan intelektual bagi UMKM, kreator, dan startup. Layanan dirancang agar cepat, terjangkau, dan mudah diakses untuk membantu melindungi merek, karya, serta mengamankan aset bisnis. Berbasis regulasi yang jelas, solusi ini mendukung pertumbuhan usaha secara berkelanjutan di era digital.</p>
+        <p style="font-size:17px;color:var(--gray);line-height:1.8;margin-bottom:32px">Tim kami terdiri dari konsultan HKI bersertifikat, advokat, dan spesialis teknis yang berpengalaman di berbagai industri mulai dari teknologi, FMCG, farmasi, hingga kreatif.</p>
+        <div class="about-points">
+          <div class="about-point"><div class="point-icon">🏅</div><div><div class="point-title">Konsultan HKI Terdaftar DJKI</div><div class="point-desc">Seluruh konsultan kami memiliki sertifikasi resmi dari Direktorat Jenderal Kekayaan Intelektual.</div></div></div>
+          <div class="about-point"><div class="point-icon">⚡</div><div><div class="point-title">Proses Cepat & Transparan</div><div class="point-desc">Update status pendaftaran berkala dan akses tracking dokumen secara real-time.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Artikel & Edukasi</div>
+      <h2 class="section-title">Pahami HKI Lebih Dalam</h2>
+      <p class="section-sub">Artikel terbaru seputar hukum kekayaan intelektual, tips pendaftaran, dan perkembangan regulasi terkini.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card fade-in">
+        <div class="blog-thumb blog-thumb-1"><span>™️</span><span class="blog-tag">Merek</span></div>
+        <div class="blog-content">
+          <div class="blog-date">15 Maret 2025</div>
+          <div class="blog-title">Panduan Lengkap Pendaftaran Merek Dagang di Indonesia 2025</div>
+          <div class="blog-excerpt">Syarat dokumen, biaya resmi, estimasi waktu, dan tips agar pendaftaran merek Anda tidak ditolak oleh DJKI.</div>
+          <a href="#" class="blog-read">Baca selengkapnya →</a>
+        </div>
+      </div>
+      <div class="blog-card fade-in">
+        <div class="blog-thumb blog-thumb-2"><span>💡</span><span class="blog-tag">Paten</span></div>
+        <div class="blog-content">
+          <div class="blog-date">2 Maret 2025</div>
+          <div class="blog-title">Paten Sederhana vs Paten Biasa: Mana yang Cocok untuk Startup?</div>
+          <div class="blog-excerpt">Perbedaan mendalam antara dua jenis paten, kriteria invensi yang bisa dipatenkan, dan strategi yang tepat untuk bisnis rintisan.</div>
+          <a href="#" class="blog-read">Baca selengkapnya →</a>
+        </div>
+      </div>
+      <div class="blog-card fade-in">
+        <div class="blog-thumb blog-thumb-3"><span>⚖️</span><span class="blog-tag">Sengketa</span></div>
+        <div class="blog-content">
+          <div class="blog-date">20 Februari 2025</div>
+          <div class="blog-title">Merek Anda Ditiru? Ini 5 Langkah Hukum yang Harus Segera Diambil</div>
+          <div class="blog-excerpt">Panduan praktis menghadapi pelanggaran merek: dari somasi, pengaduan ke DJKI, hingga gugatan di Pengadilan Niaga.</div>
+          <a href="#" class="blog-read">Baca selengkapnya →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONSULTASI -->
+<section id="konsultasi">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Konsultasi Gratis</div>
+      <h2 class="section-title">Mulai Konsultasi Hari Ini</h2>
+      <p class="section-sub">Tim ahli kami siap membantu Anda menentukan langkah terbaik dalam melindungi kekayaan intelektual Anda.</p>
+    </div>
+    <div class="consult-wrap">
+      <div class="consult-info fade-in">
+        <div class="consult-info-list">
+          <div class="ci-item"><div class="ci-icon">🕐</div><div><div class="ci-title">Jam Layanan</div><div class="ci-text">Senin – Jumat, 08.00 – 17.00 WIB<br>Sabtu – Minggu, Libur</div></div></div>
+          <div class="ci-item"><div class="ci-icon">💬</div><div><div class="ci-title">Konsultasi Gratis</div><div class="ci-text">Konsultasi awal 30 menit tanpa biaya untuk menilai kebutuhan HKI Anda.</div></div></div>
+          <div class="ci-item"><div class="ci-icon">🔒</div><div><div class="ci-title">Kerahasiaan Terjamin</div><div class="ci-text">Seluruh informasi Anda terlindungi oleh kerahasiaan klien-konsultan.</div></div></div>
+          <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-title">Lokasi</div><div class="ci-text">Isola, Kec. Sukasari, Kota Bandung, Jawa Barat 40154</div></div></div>
+        </div>
+        <a href="https://wa.me/6285158881426?text=Halo%2C%20saya%20ingin%20konsultasi%20HKI" target="_blank" class="wa-btn">
+          <span>💬</span> Chat WhatsApp Sekarang
+        </a>
+      </div>
+      <div class="consult-form-box fade-in">
+        <h3>Kirim Pertanyaan Anda</h3>
+        <div id="contactForm">
+          <div class="form-row">
+            <div class="form-group"><label>Nama Lengkap *</label><input type="text" placeholder="Masukkan nama Anda" id="fNama"></div>
+            <div class="form-group"><label>Nomor WhatsApp *</label><input type="tel" placeholder="08xx-xxxx-xxxx" id="fWA"></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="email@contoh.com" id="fEmail"></div>
+          <div class="form-group">
+            <label>Jenis Layanan yang Diminati *</label>
+            <select id="fLayanan">
+              <option value="">-- Pilih Layanan --</option>
+              <option>Pendaftaran Merek</option>
+              <option>Hak Cipta</option>
+              <option>Desain Industri</option>
+              <option>Sengketa HKI</option>
+              <option>Konsultasi Umum</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Pesan / Deskripsi Singkat</label><textarea placeholder="Ceritakan kebutuhan HKI Anda..." id="fPesan"></textarea></div>
+          <button class="form-submit" onclick="kirimForm()">Kirim Pertanyaan →</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <p>✅ Pesan Anda berhasil dikirim! Tim kami akan menghubungi Anda dalam 1×24 jam kerja.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CEK STATUS HKI -->
+<section id="status">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Cek Status HKI</div>
+      <h2 class="section-title">Pantau Status Pendaftaran Anda</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:17px;line-height:1.7;max-width:580px;margin-top:12px">Akses langsung ke portal resmi pemerintah untuk mengecek status pendaftaran kekayaan intelektual Anda.</p>
+    </div>
+    <div class="status-grid">
+      <div class="status-box fade-in">
+        <h3>🔍 Cek Merek</h3>
+        <p>Cek apakah nama merek Anda sudah terdaftar atau mirip dengan merek yang sudah ada di database DJKI.</p>
+        <div class="status-search">
+          <input type="text" placeholder="Ketik nama merek..." id="searchMerek">
+          <button onclick="bukaDJKI('merek')">Cek →</button>
+        </div>
+        <div class="status-links">
+          <a href="https://pdki-indonesia.dgip.go.id" target="_blank" class="status-link"><span class="status-link-icon">🌐</span>Portal PDKI Indonesia (DJKI)</a>
+          <a href="https://e-status.dgip.go.id" target="_blank" class="status-link"><span class="status-link-icon">📊</span>Cek Status Permohonan</a>
+        </div>
+      </div>
+      <div class="status-box fade-in">
+        <h3>💡 Cek Paten & HKI Lainnya</h3>
+        <p>Akses database lengkap paten, hak cipta, dan desain industri yang terdaftar di Indonesia melalui portal resmi.</p>
+        <div class="status-links">
+          <a href="https://pdki-indonesia.dgip.go.id" target="_blank" class="status-link"><span class="status-link-icon">📋</span>Database Paten Indonesia</a>
+          <a href="https://e-hakcipta.dgip.go.id" target="_blank" class="status-link"><span class="status-link-icon">©️</span>Portal e-Hak Cipta DJKI</a>
+          <a href="https://e-paten.dgip.go.id" target="_blank" class="status-link"><span class="status-link-icon">💡</span>Portal e-Paten DJKI</a>
+          <a href="https://djki.kemenkumham.go.id" target="_blank" class="status-link"><span class="status-link-icon">🏛️</span>Website Resmi DJKI</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Hubungi Kami</div>
+      <h2 class="section-title">Lokasi & Kontak</h2>
+    </div>
+    <div class="kontak-grid">
+      <div class="fade-in">
+        <div class="kontak-info-list">
+          <div class="k-item"><div class="k-icon">📍</div><div><div class="k-title">Alamat</div><div class="k-val">Isola, Kec. Sukasari<br> Kota Bandung, Jawa Barat 40154</div></div></div>
+          <div class="k-item"><div class="k-icon">📞</div><div><div class="k-title">Telepon</div><div class="k-val">085158881426</div></div></div>
+          <div class="k-item"><div class="k-icon">💬</div><div><div class="k-title">WhatsApp</div><div class="k-val">085158881426</div></div></div>
+          <div class="k-item"><div class="k-icon">✉️</div><div><div class="k-title">Email</div><div class="k-val">infoauthenticlaw@gmail.com</div></div></div>
+        </div>
+        <div class="jam-op">
+          <div class="jam-row"><span class="jam-day">Senin – Jumat</span><span class="jam-time">08.00 – 17.00 WIB</span></div>
+          <div class="jam-row"><span class="jam-day">Sabtu & Minggu</span><span class="jam-time" style="color:#ef4444">Tutup</span></div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="map-placeholder">
+          <div style="font-size:48px">🗺️</div>
+          <div style="font-size:15px;font-weight:600;color:var(--navy)">Google Maps</div>
+          <div style="font-size:13px;text-align:center;max-width:260px">Untuk menampilkan peta, tambahkan Google Maps embed dengan alamat kantor Anda di bagian ini</div>
+          <a href="https://maps.google.com" target="_blank" style="background:var(--navy);color:white;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;margin-top:4px">Buka Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:0">
+        <div class="logo-icon">L</div>
+        <div><span class="logo-text">authenticlaw</span><span class="logo-sub">Konsultan Kekayaan Intelektual</span></div>
+      </div>
+      <p>Mitra terpercaya untuk perlindungan kekayaan intelektual Anda. Melayani klien di seluruh Indonesia sejak 2026.</p>
+      <div class="footer-social">
+        <div class="soc-btn">📘</div>
+        <div class="soc-btn">📸</div>
+        <div class="soc-btn">💼</div>
+        <div class="soc-btn">🐦</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Layanan</h4>
+      <a href="#layanan">Pendaftaran Merek</a>
+      <a href="#layanan">Hak Cipta</a>
+      <a href="#layanan">Desain Industri</a>
+      <a href="#layanan">Sengketa HKI</a>
+    </div>
+    <div class="footer-col">
+      <h4>Informasi</h4>
+      <a href="#tentang">Tentang Kami</a>
+      <a href="#blog">Artikel HKI</a>
+      <a href="#status">Cek Status</a>
+      <a href="#kalkulator">Kalkulator Biaya</a>
+      <a href="#">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <a href="tel:02212345678">085158881426</a>
+      <a href="https://wa.me/6285158881426" target="_blank">WhatsApp</a>
+      <a href="mailto:infoauthenticlaw@gmail.com">infoauthenticlaw@gmail.com</a>
+      <a href="#kontak">Isola, Kec. Sukasari, Kota Bandung, Jawa Barat 40154</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 authenticlaw. Hak Cipta Dilindungi.</span>
+    <span><a href="#">Kebijakan Privasi</a> · <a href="#">Syarat & Ketentuan</a></span>
+  </div>
+</footer>
+
+<!-- WA FLOATING -->
+<a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20konsultasi%20HKI" target="_blank" class="wa-float" title="Chat WhatsApp">💬</a>
+
+<script>
+// === KALKULATOR ===
+const biayaData = {
+  merek:           { djki: { umkm: 1800000,  perusahaan: 1800000  }, jasa: { umkm: 2500000, perusahaan: 4000000  }, admin: 500000, lama: '12–18 bulan', int_add: 5000000 },
+  paten_sederhana: { djki: { umkm: 350000,   perusahaan: 700000   }, jasa: { umkm: 3000000, perusahaan: 5000000  }, admin: 750000, lama: '12–24 bulan', int_add: 10000000 },
+  paten_biasa:     { djki: { umkm: 750000,   perusahaan: 1500000  }, jasa: { umkm: 6000000, perusahaan: 10000000 }, admin: 1000000, lama: '36–60 bulan', int_add: 20000000 },
+  hak_cipta:       { djki: { umkm: 200000,   perusahaan: 400000   }, jasa: { umkm: 1000000, perusahaan: 2000000  }, admin: 300000, lama: '1–3 bulan',   int_add: 0 },
+  desain_industri: { djki: { umkm: 600000,   perusahaan: 1200000  }, jasa: { umkm: 3000000, perusahaan: 5000000  }, admin: 500000, lama: '12–24 bulan', int_add: 8000000 },
+};
+function fmt(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
+function hitungBiaya() {
+  const jenis   = document.getElementById('calcJenis').value;
+  const pemohon = document.getElementById('calcPemohon').value;
+  const kelas   = parseInt(document.getElementById('calcKelas').value) || 1;
+  const scope   = document.getElementById('calcScope').value;
+  const d = biayaData[jenis];
+  let djki  = d.djki[pemohon] * kelas;
+  let jasa  = d.jasa[pemohon];
+  let admin = d.admin;
+  if (scope === 'internasional') { djki += d.int_add; jasa += 5000000; }
+  document.getElementById('cr-djki').textContent  = fmt(djki);
+  document.getElementById('cr-jasa').textContent  = fmt(jasa);
+  document.getElementById('cr-admin').textContent = fmt(admin);
+  document.getElementById('cr-lama').textContent  = d.lama;
+  document.getElementById('cr-total').textContent = fmt(djki + jasa + admin);
+}
+
+// === FORM ===
+function kirimForm() {
+  const nama = document.getElementById('fNama').value.trim();
+  const wa   = document.getElementById('fWA').value.trim();
+  const layanan = document.getElementById('fLayanan').value;
+  if (!nama || !wa || !layanan) { alert('Harap isi nama, nomor WhatsApp, dan pilih layanan.'); return; }
+  document.getElementById('contactForm').style.opacity = '0.3';
+  document.getElementById('formSuccess').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }, 400);
+  const msg = `Halo, saya ${nama} ingin konsultasi tentang ${layanan}. WA: ${wa}`;
+  setTimeout(() => { window.open('https://wa.me/6281234567890?text=' + encodeURIComponent(msg), '_blank'); }, 1000);
+}
+
+// === STATUS SEARCH ===
+function bukaDJKI(type) {
+  const q = document.getElementById('searchMerek').value.trim();
+  if (!q) { alert('Masukkan nama merek yang ingin dicek.'); return; }
+  window.open('https://pdki-indonesia.dgip.go.id/index.php/merek?q=' + encodeURIComponent(q), '_blank');
+}
+
+// === MOBILE MENU ===
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// === SCROLL ANIMATIONS ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
