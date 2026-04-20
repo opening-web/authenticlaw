@@ -532,7 +532,6 @@ footer {
         <label>Jenis HKI</label>
         <select id="calcJenis" onchange="hitungBiaya()">
           <option value="merek">Merek Dagang</option>
-          <option value="paten_biasa">Paten Biasa</option>
           <option value="hak_cipta">Hak Cipta</option>
           <option value="desain_industri">Desain Industri</option>
         </select>
@@ -734,12 +733,13 @@ footer {
         </div>
       </div>
       <div class="fade-in">
-        <div class="map-placeholder">
-          <div style="font-size:48px">🗺️</div>
-          <div style="font-size:15px;font-weight:600;color:var(--navy)">Google Maps</div>
-          <div style="font-size:13px;text-align:center;max-width:260px">Untuk menampilkan peta, tambahkan Google Maps embed dengan alamat kantor Anda di bagian ini</div>
-          <a href="https://www.google.com/maps/search/?api=1&query=Isola%2C%20Sukasari%2C%20Kota%20Bandung%2C%20Jawa%20Barat%2010754" target="_blank" style="background:var(--navy);color:white;padding:10px 20px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;margin-top:4px">Buka Google Maps →</a>
-        </div>
+        <div class="location-preview fade-in">
+  <div class="map-placeholder" style="height: 320px; background: linear-gradient(135deg, var(--blue) 0%, var(--navy2) 100%); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; color: white; text-align: center; cursor: pointer;" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Isola%2C%20Sukasari%2C%20Kota%20Bandung%2C%20Jawa%20Barat%2010754', '_blank')">
+  <div style="font-size: 64px; margin-bottom: 16px;">📍</div>
+  <div style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Isola, Kec. Sukasari</div>
+  <div style="font-size: 16px; opacity: 0.9;">Kota Bandung, Jawa Barat 40154</div>
+  <div style="background: var(--accent); color: var(--navy); padding: 10px 24px; border-radius: 25px; font-weight: 600; font-size: 14px; transition: all 0.2s;">Klik untuk buka Google Maps →</div>
+</div>
       </div>
     </div>
   </div>
